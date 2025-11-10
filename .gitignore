@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.egg-info/
+.ipynb_checkpoints/
+
+# Env / IDE
+venv/
+.env/
+.venv/
+.env*/
+.vscode/
+.idea/
+
+# Dati e output
+data/
+datasets/
+outputs/
+checkpoints/
+*.keras
+*.h5
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.zip
+*.tar
+*.parquet
+*.npz
+*.npy
+*.jpg
+*.jpeg
+*.png
+
+# OS
+.DS_Store
+Thumbs.db
