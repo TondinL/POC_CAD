@@ -1,6 +1,6 @@
 import random
 from torchvision import transforms
-from spatial_transform import (
+from .spatial_transforms import (
     Compose, Resize, RandomHorizontalFlip, RandomResizedCrop,
     ColorJitter, ToTensor, Normalize
 )

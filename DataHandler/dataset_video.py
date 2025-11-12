@@ -17,8 +17,14 @@ class VideoDataset(Dataset):
         self.temporal_transform = temporal_transform
 
         # Legge le classi (es: NORMAL, ABNORMAL)
-        self.classes = sorted([d.name for d in self.root_path.iterdir() if d.is_dir()])
-        self.class_to_idx = {cls_name: i for i, cls_name in enumerate(self.classes)}
+        found = [d.name for d in self.root_path.iterdir() if d.is_dir()]
+        # Enforce ordine canonico: NORMAL=0, ABNORMAL=1
+        expected = ["NORMAL", "ABNORMAL"]
+        self.classes = [c for c in expected if c in found]
+        if set(self.classes) != set(expected):
+            raise RuntimeError(f"Mi aspetto le classi {expected}, trovate {sorted(found)}")
+
+        self.class_to_idx = {"NORMAL": 0, "ABNORMAL": 1}
 
         # Costruisce la lista (frame_paths, label)
         self.samples = []
