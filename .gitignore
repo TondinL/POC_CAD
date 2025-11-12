@@ -39,3 +39,9 @@ checkpoints/
 # OS
 .DS_Store
 Thumbs.db
+
+# Escludi tutti i file video nella cartella Dataset_video
+/Dataset_video/
+/Dataset_video/*
+/Dataset_jpg/
+/Dataset_jpg/*
