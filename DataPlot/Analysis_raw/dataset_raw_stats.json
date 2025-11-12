@@ -1,0 +1,19 @@
+{
+  "total_videos": 34,
+  "classes": {
+    "ABNORMAL": {
+      "videos": 17,
+      "avg_frames": 146.76470588235293,
+      "min_frames": 90,
+      "max_frames": 330,
+      "avg_size": 109962.35294117648
+    },
+    "NORMAL": {
+      "videos": 17,
+      "avg_frames": 814.8823529411765,
+      "min_frames": 330,
+      "max_frames": 1938,
+      "avg_size": 109962.35294117648
+    }
+  }
+}
