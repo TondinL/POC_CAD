@@ -1,8 +1,10 @@
 import torch
 from torch.utils.data import DataLoader, WeightedRandomSampler, random_split
-from dataset_video import VideoDataset
-from DataHandler.temporal_transforms import TemporalRandomCropStrict
-from DataHandler.balanced_augmentation import BalancedAugmentation
+
+# Import RELATIVI perché questo file sta dentro DataHandler/
+from .dataset_video import VideoDataset
+from .temporal_transforms import TemporalRandomCropStrict
+from .balanced_augmentation import BalancedAugmentation
 
 
 def make_dataloaders(
@@ -10,8 +12,8 @@ def make_dataloaders(
     batch_size=4,
     num_workers=4,
     train_split=0.8,
-    val_split=0.1,
-    test_split=0.1,
+    val_split=0.2,
+    test_split=0,
     temporal_size=8,
     image_size=224,
     balance=True
@@ -48,7 +50,7 @@ def make_dataloaders(
     # --- Bilanciamento con WeightedRandomSampler ---
     if balance:
         # conta le classi nel train set
-        labels = [full_dataset[i][1] for i in train_set.indices]
+        labels = [full_dataset.samples[i][1] for i in train_set.indices]
         class_counts = torch.bincount(torch.tensor(labels))
         class_weights = 1. / class_counts.float()
         sample_weights = [class_weights[l] for l in labels]
