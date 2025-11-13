@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>POC_CAD – Inference</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 40px; }
+    .card { max-width: 640px; padding: 24px; border: 1px solid #ddd; border-radius: 12px; }
+    input[type=number]{ width: 120px; }
+    pre { background: #f6f8fa; padding: 12px; border-radius: 8px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Upload video → Predizione</h2>
+    <form id="form">
+      <div>
+        <input type="file" name="file" accept="video/*" required />
+      </div>
+      <div style="margin-top: 10px;">
+        <label>Soglia ABNORMAL (0–1): </label>
+        <input type="number" step="0.01" min="0" max="1" name="threshold" value="0.5" />
+      </div>
+      <button type="submit" style="margin-top: 12px;">Predici</button>
+    </form>
+    <h3>Risultato</h3>
+    <pre id="out">–</pre>
+  </div>
+  <script>
+    const form = document.getElementById('form');
+    const out = document.getElementById('out');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const res = await fetch('/predict', { method: 'POST', body: fd });
+      const json = await res.json();
+      out.textContent = JSON.stringify(json, null, 2);
+    });
+  </script>
+</body>
+</html>
