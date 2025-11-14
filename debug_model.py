@@ -8,13 +8,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# Adatta l'import se model.py è in un package.
-# Se hai:  models/model.py  usa:  from models.model import build_model, get_fine_tuning_parameters
-try:
-    from model import build_model, get_fine_tuning_parameters
-except Exception:
-    # fallback se model.py è nella root
-    from model import build_model, get_fine_tuning_parameters
+from model import build_model, get_fine_tuning_parameters
 
 
 def human_count(n):
