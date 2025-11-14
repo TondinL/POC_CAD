@@ -31,6 +31,16 @@ class Resize:
         pass
 
 
+class CenterCrop: 
+    def __init__(self, size):
+        self.transform = T.CenterCrop(size)
+
+    def __call__(self, img):
+        return self.transform(img)
+
+    def randomize_parameters(self):
+        pass
+
 class RandomResizedCrop:
     def __init__(self, size, scale=(0.8, 1.0), ratio=(3/4, 4/3)):
         self.transform = T.RandomResizedCrop(size=size, scale=scale, ratio=ratio)

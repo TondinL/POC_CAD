@@ -8,18 +8,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # --- Directory di lavoro ---
 WORKDIR /app
 
-# Copia l'intero progetto (inclusi DataHandler, model.py, FineTuned_Models, ecc.)
-COPY . /app
-
 # Installa le dipendenze della webapp
 COPY src/requirements.txt /app/src/requirements.txt
 RUN pip install --no-cache-dir -r /app/src/requirements.txt
+
+# Copia l'intero progetto (inclusi DataHandler, model.py, FineTuned_Models, ecc.)
+COPY . /app
 
 # Imposta il path per importare i tuoi moduli
 ENV PYTHONPATH=/app
 
 # Porta esposta
-EXPOSE 8000
+EXPOSE 9000
 
 # Comando di avvio: esegue il server FastAPI
 CMD ["uvicorn", "src.app.main:app", "--host", "0.0.0.0", "--port", "9000"]

@@ -10,10 +10,7 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 
 from DataHandler.dataloader import make_dataloaders
-try:
-    from models.model import build_model
-except Exception:
-    from model import build_model
+from model import build_model
 
 
 def ensure_dir(p: Path):
